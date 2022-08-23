@@ -1,10 +1,12 @@
 <script setup lang="ts">
-  import type {BygonzDexie, Table}  from 'bygonz'
+  // import type {BygonzDexie, Table}  from 'bygonz'
 
   // import { useObservable } from "@vueuse/rxjs";
   // import{ refFrom } from 'vuse-rx'
   import { reactive } from "vue"
-  import * as bygonz  from 'bygonz'
+
+  const ztaxCDNURL = 'https://ztax-cdn.fission.app/bygonz/index.mjs'
+  const bygonz = await import(ztaxCDNURL/* @vite-ignore */ )
   const { doTest, liveQuery } = bygonz
   const db = await doTest(bygonz) as BygonzDexie & {Friends:Table}
 
