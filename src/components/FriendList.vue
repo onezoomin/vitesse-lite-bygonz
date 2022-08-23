@@ -19,6 +19,7 @@ friendsObservable.subscribe({
     for (const eachFriend of result) {
       resultWithAgeHistory.push({
         ...eachFriend,
+        // TODO improve ergonomics
         ageHistory: (await eachFriend.getAttributeHistory('age')).map(ageObj => Object.values(ageObj)[0]).join(', '),
       })
     }
