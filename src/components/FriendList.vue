@@ -2,7 +2,7 @@
 import { reactive } from 'vue'
 
 const ztaxCDNURL = 'https://ztax-cdn.fission.app/bygonz/index.mjs'
-const bygonz = await import(ztaxCDNURL/* @vite-ignore */)
+const bygonz = await import(/* @vite-ignore */ztaxCDNURL)
 const { doTest, liveQuery } = bygonz
 const db = await doTest(bygonz) // as BygonzDexie & {Friends: any}
 
@@ -44,8 +44,8 @@ console.log({ db, rxState })
 </script>
 
 <template>
-  <ul>
-    <li v-for="friend in rxState.allFriends" :key="friend.id">
+  <ul class="max-w-md m-auto">
+    <li v-for="friend in rxState.allFriends" :key="friend.id" class="text-left">
       {{ friend.name }}, {{ friend.age }}{{ friend.ageHistory?.length ? `, Previous ages: ${friend.ageHistory}` : '' }}
     </li>
   </ul>
