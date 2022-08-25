@@ -6,7 +6,8 @@ const bygonz = await import(/* @vite-ignore */ztaxCDNURL)
 const { doTest, liveQuery } = bygonz
 const db = await doTest(bygonz) // as BygonzDexie & {Friends: any}
 
-// const friends = useObservable(liveQuery(() => db.Friends.toArray()) as any) as Ref<Friend[]> // only shows the first array non-reactive
+// this only shows the first array (after the first refresh) and is non-reactive:
+// const friends = useObservable(liveQuery(() => db.Friends.toArray()) as any) as Ref<Friend[]> 
 
 // consider https://github.com/dexie/Dexie.js/issues/1528#issuecomment-1085388832
 const rxState = reactive({ allFriends: await db.Friends.toArray() })
@@ -30,6 +31,7 @@ friendsObservable.subscribe({
 })
 
 console.log({ db, rxState })
+/// traditional dexie recomendations don't seem to work with vue3 composition
 //  export default {
 //   name: "FriendList",
 //   setup() {
